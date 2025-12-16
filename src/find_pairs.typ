@@ -4,6 +4,7 @@
 = Các kỹ thuật tìm cặp tương đồng
 
 == K-D Tree
+
 #let bent-edge(from, to, ..args) = {
   let midpoint = (from, 50%, to)
   let vertices = (
@@ -14,8 +15,6 @@
   )
   edge(..vertices, "-|>", ..args)
 }
-
-#v(-2.4cm)
 
 #figure(
   diagram(
