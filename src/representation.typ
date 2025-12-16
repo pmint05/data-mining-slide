@@ -2,11 +2,8 @@
 
 = Biểu diễn dữ liệu
 
-== Các loại dữ liệu
+== Vector
 
-#align(top)[
-  === Vector
-]
 #figure(
   image("../images/vector-1.png", width: 100%),
   caption: [Một ví dụ từ Pinecone],
@@ -61,8 +58,4 @@
   )
 
 
-=== Probability and statistic
-
-=== Hashing
-
-=== Token sequence
+== Hashing
