@@ -191,3 +191,11 @@
     ],
   ),
 )
+
+#align(top)[
+  === Cập nhật
+]
+
+- Không có hỗ trợ tốt thao tác cập nhật
+- Cập nhật cục bộ
+- Tái xây dựng sau 1 khoảng thời gian
