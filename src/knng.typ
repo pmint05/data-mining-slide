@@ -184,7 +184,6 @@
       #set text(size: 16pt)
       Độ phức tạp thuật toán là $cal(O)(m (log(m) + k_"graph" (d + log(m))))$\
       -- $m$ lần lặp\
-      -- Thêm 1 phần tử vào heap mất $log(m)$
       -- Mỗi đỉnh đồ thị có $k_"graph"$ hàng xóm
 
       Thực tế nhanh hơn brute-force nhiều
@@ -199,3 +198,26 @@
 - Không có hỗ trợ tốt thao tác cập nhật
 - Cập nhật cục bộ
 - Tái xây dựng sau 1 khoảng thời gian
+
+#pagebreak()
+
+#align(top)[
+  === Nhận xét
+]
+
+- Ưu
+  - Đơn giản
+  - Thể hiện cấu trúc cục bộ của dataset
+- Nhược
+  - Không hỗ trợ cập nhật
+  - Chất lượng đồ thị phụ thuộc dataset
+
+#figure(
+  image("../images/knng.png", width: 50%),
+  caption: "Nhược điểm của KNNG",
+)
+
+- Phù hợp với dataset:
+  - Tĩnh
+  - Dày
+  - Kích cỡ tương đối
