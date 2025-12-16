@@ -5,8 +5,8 @@
 == Vector
 
 #figure(
-  image("../images/vector-1.png", width: 100%),
-  caption: [Một ví dụ từ Pinecone],
+  image("../images/embedding-model.png", width: 100%),
+  caption: [Công dụng của một mô hình embedding],
 )
 #pagebreak()
 
