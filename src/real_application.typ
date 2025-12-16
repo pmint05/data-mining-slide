@@ -42,3 +42,10 @@
   [#rimg("/images/google-lens.png", 86%) #v(0pt)],
   caption: [Tìm kiếm hình ảnh tương tự sử dụng Google Lens],
 )
+
+== Cách hoạt động
+
+#figure(
+  image("../images/simsearch.png", width: 80%),
+  caption: [Luồng hoạt động của hệ thống tìm kiếm tương tự],
+)
