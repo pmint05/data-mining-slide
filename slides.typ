@@ -64,7 +64,6 @@
 #include "src/intro.typ"
 #include "src/real_application.typ"
 #include "src/representation.typ"
-#include "src/similarity.typ"
 #include "src/measures.typ"
 #include "src/find_pairs.typ"
 #include "./src/knng.typ"
