@@ -67,3 +67,4 @@
 #include "src/similarity.typ"
 #include "src/measures.typ"
 #include "src/find_pairs.typ"
+#include "./src/knng.typ"

@@ -3,11 +3,7 @@
 
 = Các kỹ thuật tìm cặp tương đồng
 
-== Tìm chính xác
-#align(top)[
-  === K-d Tree
-  *Cấu trúc cây*
-]
+== K-D Tree
 #let bent-edge(from, to, ..args) = {
   let midpoint = (from, 50%, to)
   let vertices = (
@@ -298,10 +294,7 @@
 ]
 
 
-#align(top)[
-  === Ball Tree
-  *Cấu trúc cây*
-]
+== Ball Tree
 #v(-2.2cm)
 #figure(
   diagram(
@@ -524,17 +517,14 @@
     ],
   ),
 )
-== Tìm gần đúng
 
-=== LSH
+== LSH
 
 #pagebreak()
 
-#align(top)[
-  === K-NNG
+== K-Nearest-Neighbor Graph
 
-  Là một đồ thị mà mỗi nút $u$ có cạnh nối đến $k$ đỉnh khác gần nó nhất
-]
+#v(-2.2cm)
 
 #figure(
   image("../images/dm14.png", width: 40%),
