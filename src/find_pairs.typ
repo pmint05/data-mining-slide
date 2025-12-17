@@ -517,7 +517,210 @@
   ),
 )
 
-== LSH
+== LSH: Locality Sensitive Hashing 
+
+#figure(
+  image("../images/normalhash.png", width: 70%),
+  caption: [Hash bình thường],
+)
+
+#figure(
+  image("../images/lsh.png", width: 70%),
+  caption: [LSH],
+)
+
+#figure(
+  image("../images/lshprocess.png", width: 70%),
+)
 
 #pagebreak()
+
+=== K-Shingling: Chuyển text → tập shingles
+
+#box(
+  height: 300pt,
+  grid(columns: (55%, 45%), gutter: 20pt)[
+    
+    #set text(size: 13pt)
+    #figure(
+      kind: "algorithm",
+      supplement: [K-Shingling],
+      pseudocode-list(hooks: .4em, booktabs: true, numbered-title: [Tạo k-shingles #h(100%)])[
+        + *function* K_SHINGLING(doc, k=5):
+          + shingles ← {}
+            + *for* i = 0 *to* len(doc)-k:
+            + shingle ← doc[i:i+k]
+            + shingles.add(shingle)
+            + *return* shingles
+      ]
+    )
+  ][
+    #set text(size: 16pt)
+    *Ví dụ*: `"the cat sat"` (k=3)
+    ```
+    {"the", "he ", "cat", "at ", "sat"}
+    ```
+    #v(1em)
+    *Jaccard*: $J(A,B) = frac(|A∩B|,|A∪B|)$
+    
+    *Chuyển text → set để tính Jaccard*
+  ]
+)
+
+#pagebreak()
+
+=== MinHashing: Sparse → Compact Signature
+
+#box(
+  grid(columns: (55%, 45%), gutter: 20pt)[
+    #set text(size: 12pt)
+    #figure(
+      kind: "algorithm",
+      supplement: [MinHash],
+      pseudocode-list(hooks: .4em, booktabs: true, numbered-title: [Tạo signature #h(100%)])[
+        + *function* MINHASH(set, n=100):
+          + signature ← array(n, ∞)
+          + *for* hash_i = 1 *to* n:
+            + π ← random_permutation(vocab)
+            + *for* shingle *in* set:
+              + h ← π[shingle]
+              + signature[hash_i] ← min(signature[hash_i], h)
+            + *return* signature
+      ]
+    )
+  ][
+    #set text(size: 15pt)
+    *Key Property*:
+    ```
+    Pr[minhash(A)=minhash(B)] = J(A,B)
+    ```
+    
+    #v(1em)
+    **Ví dụ** (vocab=10k → n=100):
+    ```
+    Doc A: 500 shingles → [342, 187, 9052, ...]
+    Doc B: 600 shingles → [342, 201, 9052, ...]
+    ```
+    
+    *Giảm 10kD → 100D (100x nhỏ hơn)*
+  ]
+)
+
+#pagebreak()
+
+=== Banding: Signature → Candidate Pairs
+
+#figure(
+  image("../images/banding1.png", width: 70%),
+  caption: [banding],
+)
+
+#figure(
+  image("../images/banding2.png", width: 70%),
+  caption: [banding],
+)
+
+#box(
+  grid(columns: (55%, 45%), gutter: 20pt)[
+    #set text(size: 12pt)
+    #figure(
+      kind: "algorithm",
+      supplement: [Banding],
+      pseudocode-list(hooks: .4em, booktabs: true, numbered-title: [Band + Hash #h(100%)])[
+        + *function* BAND_HASH(signature, b=20, r=5):
+          +   buckets ← {}
+          +   *for* band = 0 *to* b-1:
+            +     start ← band [times] r
+            +     rows ← signature[start:start+r]
+            +     h ← hash(rows)
+            +     buckets[h].add(doc_id)
+        +   
+          +   candidates ← {}
+          +   *for* bucket *in* buckets.values():
+            +     *if* len(bucket) ≥ 2:
+              +       candidates += pairs(bucket)
+          +   *return* candidates
+      ]
+    )
+  ][
+    #set text(size: 14pt)
+    
+    **Ví dụ** (n=100, b=20 bands, r=5 rows/band):
+    ```
+    signature[0:5]   → hash1 → bucket1
+    signature[5:10]  → hash2 → bucket2  
+    ...
+    signature[95:100]→ hash20→ bucket20
+    ```
+    
+    #v(1em)
+    **S-curve**: $P(s) = 1 - (1-s^r)^b$
+    
+    s=0.8 → *95% detect*
+    s=0.5 → *45% detect*
+    s=0.2 → *< 1% false positive*
+  ]
+)
+
+#pagebreak()
+
+=== Pipeline Hoàn chỉnh & Tuning
+
+#columns(2, gutter: 20pt)[
+```
+Text (1MB)
+          ↓ k=5
+Shingles (~500)
+          ↓ n=100
+MinHash signature
+          ↓ b=20,r=5
+20 Bands → Buckets
+          ↓
+Candidates (0.1%)
+          ↓
+Verify Jaccard → Top-K
+```
+]
+=== Tối ưu Bands 
+
+#figure(
+  table(
+    columns: 4,
+    align: horizon,
+    table.header[
+      *Target s*
+    ][
+      *b (bands)*
+    ][
+      *r (rows)*
+    ][
+      *P(detect)*
+    ],
+    [≥ 0.8 (duplicate)],
+    [10],
+    [10],
+    [95%],
+    [≥ 0.5 (similar)],
+    [20],
+    [5],
+    [62%],
+    [≥ 0.3 (related)],
+    [50],
+    [2],
+    [78%],
+  ),
+  caption: [n = b × r = 100 hash functions],
+)
+
+*S-curve formula*:
+```P(s) = 1 - (1 - s^r)^b```
+
+#set text(size: 14pt)
+**Trade-offs**:
+- **Nhiều bands (b lớn, r nhỏ)**: ↑ Recall, ↓ Precision
+- **Ít bands (b nhỏ, r lớn)**: ↓ Recall, ↑ Precision
+
+*1M docs → 10k candidates (thay vì 10^12 pairs)*
+
+
 
