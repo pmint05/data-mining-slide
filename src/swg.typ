@@ -5,15 +5,15 @@
   caption: "Quy luật \"Sáu bậc cách biệt\"",
 )
 #pagebreak()
-- Đồ thị thế giới nhỏ (SWG): Một đồ thị K-NNG được bổ sung thêm một số cạnh ngẫu nhiên tầm xa, nhờ đó có được các đặc tính của thế giới nhỏ (Small world characteristic)
+- Đồ thị KNNG có tính chất thế giới nhỏ nhờ 1 số cạnh ngẫu nhiên tầm xa
 #figure(
   image("/images/swg_2.png", width: 40%),
-  caption: ""
+  caption: "Đồ thị KNN có thêm tính chất thế giới nhỏ"
 )
 #pagebreak()
-- Kết quả: Các cụm (cluster) ở xa nhau được kết nối, độ dài đường đi trung bình ngắn nhất giữa hai đỉnh được giảm mạnh (hoặc từ không tồn tại trở thành tồn tại), qua đó tạo cho đồ thị tính điều hướng (navigable).
+- Kết nối các cụm xa nhau
+- Giảm độ dài đường đi giữa các cặp đỉnh
 #figure(
   image("/images/swg_3.png", width: 35%),
   caption: "Tác dụng của cạnh tầm xa"
 )
-- Trong thực tế, NSWG nhanh chóng được tiếp nối bởi HNSWG: "đồ thị thế giới nhỏ *phân cấp được*"
