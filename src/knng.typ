@@ -25,7 +25,14 @@
 
 #pagebreak()
 
-- _Efficient K-Nearest Neighbor Graph Construction for Generic Similarity Measures_
+#align(center)[
+  #box(
+    stroke: 1.2pt,
+    inset: 15pt,
+    upper(text(15pt, weight: "bold", "Efficient K-Nearest Neighbor Graph Construction for Generic Similarity Measures")),
+  )
+  #v(20pt)
+]
 - Hàng xóm của hàng xóm khả năng cao cũng là hàng xóm
 - Bắt đầu với đồ thị ngẫu nhiên, cải thiện dần
 

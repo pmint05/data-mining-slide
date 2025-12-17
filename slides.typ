@@ -67,3 +67,5 @@
 #include "src/measures.typ"
 #include "src/find_pairs.typ"
 #include "./src/knng.typ"
+#include "./src/swg.typ"
+#include "./src/hnswg.typ"
