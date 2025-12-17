@@ -87,7 +87,99 @@ Trong đó $J(A, B)$ là Jaccard Similarity giữa hai tập $A$ và $B$.
 
 
 === Edit Distance
+
+#grid(
+  columns: (50%, auto),
+  gutter: 2cm,
+  [
+    #figure(
+      [#image("../images/edit-distance-cropped.svg", width: 100%) #v(10pt)],
+      caption: [Edit Distance],
+    )
+  ],
+  [
+    $d_"edit" ("str1", "str2") =$ số lần chỉnh sửa tối thiểu để biến "str1" thành "str2"
+
+    Nếu gọi:
+    - $L(x)$: độ dài chuỗi $x$,
+    - $L(y)$: độ dài chuỗi $y$,
+    - $L("LCS"(x, y))$: độ dài chuỗi con chung dài nhất của $x$ và $y$,
+    thì:
+    $ d_"edit" (x, y) = L(x) + L(y) - 2 * L("LCS"(x, y)) $
+  ],
+)
+
+#pagebreak()
+
 === Hamming Distance
+
+#grid(
+  columns: (50%, auto),
+  gutter: 2cm,
+  [
+    #figure(
+      [#image("../images/hamming-distance-cropped.svg", width: 100%) #v(10pt)],
+      caption: [Hamming Distance],
+    )
+  ],
+  [
+    $d_"Hamming" (x, y) =$ số vị trí mà hai chuỗi $x$ và $y$ khác nhau
+
+    $
+      d(x, y) = sum_(i=1)^n [x_i eq.not y_i]
+    $
+  ],
+)
 
 == So sánh
 
+#[
+  #set text(size: 16pt)
+  #set par(justify: false)
+  #figure(
+    table(
+      columns: 6,
+      inset: 8pt,
+      stroke: 0.5pt,
+      align: (left, left, left, center, left, left),
+
+      [*Độ đo*], [*Loại dữ liệu*], [*Khi nào dùng*], [*Chi phí*], [*Ưu điểm*], [*Nhược điểm*],
+
+      // Euclidean
+      [Euclidean],
+      [Số liên tục, vector số],
+      [Hình học, giảm chiều, k-NN, k-means],
+      [$O(d)$],
+      [Trực quan, phổ biến],
+      [Nhạy scale, outlier; kém với d lớn],
+
+      // Cosine
+      [Cosine],
+      [Vector số, dữ liệu thưa],
+      [Hướng vector, TF-IDF, recommendation],
+      [$O(d)$],
+      [Độc lập độ lớn vector],
+      [Vi phạm tiên đề; bị chi phối chiều lớn],
+
+      // Hamming
+      [Hamming], [Binary, categorical], [Mã bit, phát hiện lỗi], [$O(d)$], [Đơn giản, nhanh], [Chỉ dữ liệu nhị phân],
+
+      // Jaccard
+      [Jaccard],
+      [Sets, vector nhị phân],
+      [So sánh tập (văn bản, hộ sơ)],
+      [$O(d)$],
+      [Tập hợp khác kích thước],
+      [Khuyết tần suất phần tử],
+
+      // Edit
+      [Edit],
+      [Chuỗi (sequences, string)],
+      [So khớp chuỗi, NLP],
+      [$O(m n)$],
+      [Nhạy sai lệch nhỏ, chuỗi khác độ dài],
+      [Chi phí cao; chỉ cho chuỗi],
+    ),
+    caption: [So sánh các phép đo độ tương đồng],
+  )
+]
