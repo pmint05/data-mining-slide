@@ -210,18 +210,13 @@
   ],
   [
     #figure(
-      [
-        #image("../images/dm10.png", width: 70%),
-      ],
+      image("../images/dm10.png", width: 70%),
       caption: "Không tồn tại \ncon bên phải",
     )
   ],
   [
     #figure(
-      [
-        #image("../images/dm11.png", width: 70%)
-        #v(-0.88cm)
-      ],
+      image("../images/dm11.png", width: 70%),
       caption: "Không tồn tại \ncon bên phải",
     )
   ],
