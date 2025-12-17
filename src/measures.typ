@@ -134,7 +134,7 @@ Trong đó $J(A, B)$ là Jaccard Similarity giữa hai tập $A$ và $B$.
 == So sánh
 
 #[
-  #set text(size: 16pt)
+  #set text(size: 14pt)
   #set par(justify: false)
   #figure(
     table(
@@ -151,7 +151,7 @@ Trong đó $J(A, B)$ là Jaccard Similarity giữa hai tập $A$ và $B$.
       [Hình học, giảm chiều, k-NN, k-means],
       [$O(d)$],
       [Trực quan, phổ biến],
-      [Nhạy scale, outlier; kém với d lớn],
+      [Nhạy scale, outlier; hiệu quả giảm khi $d$ tăng],
 
       // Cosine
       [Cosine],
@@ -159,18 +159,18 @@ Trong đó $J(A, B)$ là Jaccard Similarity giữa hai tập $A$ và $B$.
       [Hướng vector, TF-IDF, recommendation],
       [$O(d)$],
       [Độc lập độ lớn vector],
-      [Vi phạm tiên đề; bị chi phối chiều lớn],
+      [Không phải là metric; chỉ xét hướng; nhạy với nhiễu],
 
       // Hamming
-      [Hamming], [Binary, categorical], [Mã bit, phát hiện lỗi], [$O(d)$], [Đơn giản, nhanh], [Chỉ dữ liệu nhị phân],
+      [Hamming], [Binary, categorical (chuỗi cùng độ dài)], [Mã bit, phát hiện lỗi], [$O(d)$], [Đơn giản, nhanh], [Chỉ dữ liệu nhị phân; không phản ánh được mức độ],
 
       // Jaccard
       [Jaccard],
       [Sets, vector nhị phân],
       [So sánh tập (văn bản, hộ sơ)],
-      [$O(d)$],
+      [$O(|A| + |B|)$],
       [Tập hợp khác kích thước],
-      [Khuyết tần suất phần tử],
+      [Khuyết tần suất phần tử; mất thông tin thứ tự, độ lớn],
 
       // Edit
       [Edit],
