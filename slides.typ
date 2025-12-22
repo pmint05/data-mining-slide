@@ -70,3 +70,4 @@
 #include "./src/knng.typ"
 #include "/src/swg.typ"
 #include "/src/hnswg.typ"
+#include "src/product_quantization.typ"
