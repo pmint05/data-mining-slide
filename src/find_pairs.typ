@@ -155,8 +155,8 @@
           + right_min $<-$ findMin(root.right, d)
           + res $<-$ root
           + *for* candidate *in* [left_min, right_min] *do*
-            + *if* candidate != None *and* candidate.point[d] < res.point[d] *then*
-            + res $<-$ candidate
+            + *if* candidate is not None *and* candidate.point[d] < res.point[d] *then*
+              + res $<-$ candidate
           + *return* res
     ],
   )
