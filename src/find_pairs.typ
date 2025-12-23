@@ -405,7 +405,7 @@
   - Không phù hợp với dữ liệu có số chiều lớn
   - Khó cập nhật động (gây lệch cây)
   - Không tối ưu cho dữ liệu phân bố không đều (nhiều outlier)
-  - Khó prune với các loại hàm khoảng cách != norm $L_1, L_2, L_inf$
+  - Khó cắt tỉa với các hàm khoảng cách không thuộc chuẩn $L_p$
 
 
 == Ball Tree
