@@ -420,7 +420,7 @@
     // Nodes
     node((2.5, 0), [*`Node`*], name: <a>),
     node((0, 3), [`center`\ tâm node], name: <b>),
-    node((2, 3), [`radius`\ bán kính node], name: <c>),
+    node((2, 3), [`radius`\ bán kính], name: <c>),
     node((3, 3), [`left`\ con bên trái], name: <d>),
     node((4, 3), [`right`\ con bên phải], name: <e>),
 
@@ -490,7 +490,7 @@
   ),
 )
 
-*Chèn*
+*Chèn một điểm vào cây*
 
 #box(
   height: 355pt,
@@ -533,7 +533,7 @@
   ),
 )
 
-*Xóa*
+*Xóa một điểm khỏi cây*
 
 #box(
   height: 355pt,
@@ -560,7 +560,7 @@
                   + DELETE(node.left, $x$)
                 + *else*
                   + DELETE(node.right, $x$)
-                  + update(node.center, node.radius)
+                + update(node.center, node.radius)
           ],
         )
       ]
@@ -595,28 +595,28 @@
             + *function* BALLTREE_KNN(root, q, k)
               + heap $<-$ empty max-heap
               + *function* SEARCH(node)
-              + *if* node is leaf *then*
-                + *for* p *in* node.points *do*
-                  + d $<-$ dist(q, p)
-                  + *if* heap.size < k *then*
-                    + heap.push((d, p))
-                  + *else if* d < heap.max_key *then*
-                    + heap.replace_max((d, p))
-              + *return*
-              + dL $<-$ max(0, dist(q, node.left.center) - node.left.radius)
-              + dR $<-$ max(0, dist(q, node.right.center) - node.right.radius)
-              + *if* dL < dR *then*
-                + *if* heap.size < k *or* dL $<=$ heap.max_key *then*
-                  + SEARCH(node.left)
-                + *if* heap.size < k *or* dR $<=$ heap.max_key *then*
-                  + SEARCH(node.right)
-              + *else*
-                + *if* heap.size < k *or* dR $<=$ heap.max_key *then*
-                  + SEARCH(node.right)
-                + *if* heap.size < k *or* dL $<=$ heap.max_key *then*
-                  + SEARCH(node.left)
-              + SEARCH(root)
-              + *return* heap.items sorted asc by distance
+                + *if* node is leaf *then*
+                  + *for* p *in* node.points *do*
+                    + d $<-$ dist(q, p)
+                    + *if* heap.size < k *then*
+                      + heap.push((d, p))
+                    + *else if* d < heap.max_key *then*
+                      + heap.replace_max((d, p))
+                + *return*
+                + dL $<-$ max(0, dist(q, node.left.center) - node.left.radius)
+                + dR $<-$ max(0, dist(q, node.right.center) - node.right.radius)
+                + *if* dL < dR *then*
+                  + *if* heap.size < k *or* dL $<=$ heap.max_key *then*
+                    + SEARCH(node.left)
+                  + *if* heap.size < k *or* dR $<=$ heap.max_key *then*
+                    + SEARCH(node.right)
+                + *else*
+                  + *if* heap.size < k *or* dR $<=$ heap.max_key *then*
+                    + SEARCH(node.right)
+                  + *if* heap.size < k *or* dL $<=$ heap.max_key *then*
+                    + SEARCH(node.left)
+                + SEARCH(root)
+                + *return* heap.items sorted asc by distance
           ],
         )
       ]
@@ -631,6 +631,17 @@
     ],
   ),
 )
+
+- Ưu điểm:
+  - Hiệu quả hơn K-d Tree với dữ liệu nhiều chiều
+  - Không cần học tham số
+  - Hàm đo khoảng cách bất kỳ $->$ phù hợp nhiều loại dữ liệu
+
+- Nhược điểm
+  - Cấu trúc cây phức tạp
+  - Nhạy với outliers
+  - Chi phí xây dựng cây cao
+  - Hiệu suất giảm khi số chiều tăng
 
 == LSH: Locality Sensitive Hashing
 

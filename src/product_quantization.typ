@@ -27,7 +27,7 @@
 === Product Quantization
 
 #figure(
-  image("../images/prod-quant.svg", width: 85%),
+  image("../images/prod-quant.svg", width: 80%),
   caption: "Minh họa product quantization",
 )
 
