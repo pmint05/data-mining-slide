@@ -33,7 +33,7 @@
     bent-edge(<a>, <b>),
     bent-edge(<a>, <c>),
   ),
-  caption: [Cấu trúc K-d Tree],
+  caption: [Cấu trúc $k$-d Tree],
 )
 
 
@@ -235,13 +235,12 @@
               + root.left $<-$ None
             + *else*
               + *return* None
-          + *return* root
-          + axis $<-$ depth mod $k$
-          + *if* point[axis] < root.point[axis] *then*
-          + root.left $<-$ delete(root.left, point, depth + 1)
-          + *else*
-          + root.right $<-$ delete(root.right, point, depth + 1)
-          + *return* root
+            + axis $<-$ depth mod $k$
+            + *if* point[axis] < root.point[axis] *then*
+              + root.left $<-$ delete(root.left, point, depth + 1)
+            + *else*
+              + root.right $<-$ delete(root.right, point, depth + 1)
+            + *return* root
         ],
       )
     ],
@@ -662,22 +661,22 @@
       kind: "algorithm",
       supplement: [K-Shingling],
       pseudocode-list(hooks: .4em, booktabs: true, numbered-title: [Tạo k-shingles #h(100%)])[
-        + *function* K_SHINGLING(doc, k=5):
+        + *function* K_SHINGLING(doc, $k=5$):
           + shingles ← {}
-            + *for* i = 0 *to* len(doc)-k:
-              + shingle ← doc[i:i+k]
-              + shingles.add(shingle)
-              + *return* shingles
+          + *for* $i = 0$ *to* len(doc) $- k$:
+            + shingle ← doc[$i:i+k$]
+            + shingles.add(shingle)
+            + *return* shingles
       ],
     )
   ][
     #set text(size: 16pt)
-    *Ví dụ*: `"the cat sat"` (k=3)
+    *Ví dụ*: `"the cat sat"` $(k = 3)$
     ```
     {"the", "he ", "cat", "at ", "sat"}
     ```
     #v(1em)
-    *Jaccard*: $J(A,B) = frac(|A∩B|, |A∪B|)$
+    *Jaccard*: $J(A, B) = (A inter B) / (A union B)$
 
     *Chuyển text → set để tính Jaccard*
   ],
@@ -694,13 +693,13 @@
       kind: "algorithm",
       supplement: [MinHash],
       pseudocode-list(hooks: .4em, booktabs: true, numbered-title: [Tạo signature #h(100%)])[
-        + *function* MINHASH(set, n=100):
-          + signature ← array(n, ∞)
-          + *for* hash_i = 1 *to* n:
+        + *function* MINHASH(set, $n=100$):
+          + signature ← array($n$, $infinity$)
+          + *for* hash_i $= 1$ *to* $n$:
             + π ← random_permutation(vocab)
             + *for* shingle *in* set:
-              + h ← π[shingle]
-              + signature[hash_i] ← min(signature[hash_i], h)
+              + $h$ ← π[shingle]
+              + signature[hash_i] ← min(signature[hash_i], $h$)
             + *return* signature
       ],
     )
@@ -712,13 +711,13 @@
     ```
 
     #v(1em)
-    **Ví dụ** (vocab=10k → n=100):
-    ```
-    Doc A: 500 shingles → [342, 187, 9052, ...]
-    Doc B: 600 shingles → [342, 201, 9052, ...]
-    ```
+    // *Ví dụ* (vocab=10k → n=100):
+    // ```
+    // Doc A: 500 shingles → [342, 187, 9052, ...]
+    // Doc B: 600 shingles → [342, 201, 9052, ...]
+    // ```
 
-    *Giảm 10kD → 100D (100x nhỏ hơn)*
+    // *Giảm 10kD → 100D (100x nhỏ hơn)*
   ],
 )
 
@@ -743,17 +742,17 @@
       kind: "algorithm",
       supplement: [Banding],
       pseudocode-list(hooks: .4em, booktabs: true, numbered-title: [Band + Hash #h(100%)])[
-        + *function* BAND_HASH(signature, b=20, r=5):
+        + *function* BAND_HASH(signature, $b=20$, $r=5$):
           + buckets ← {}
-          + *for* band = 0 *to* b-1:
-            + start ← band [times] r
-            + rows ← signature[start:start+r]
-            + h ← hash(rows)
-            + buckets[h].add(doc_id)
+          + *for* band = 0 *to* $b - 1$:
+            + start ← band $times$ $r$
+            + rows ← signature[start:start $+ r$]
+            + $h$ ← hash(rows)
+            + buckets[$h$].add(doc_id)
         +
           + candidates ← {}
           + *for* bucket *in* buckets.values():
-            + *if* len(bucket) ≥ 2:
+            + *if* len(bucket) $>= 2$:
               + candidates += pairs(bucket)
           + *return* candidates
       ],
@@ -761,20 +760,22 @@
   ][
     #set text(size: 14pt)
 
-    **Ví dụ** (n=100, b=20 bands, r=5 rows/band):
+    *Ví dụ* ($n=100$, $b=20$ bands, $r=5$ rows/band):
     ```
-    signature[0:5]   → hash1 → bucket1
-    signature[5:10]  → hash2 → bucket2
+    signature[0:5]    → hash1  → bucket1
+    signature[5:10]   → hash2  → bucket2
     ...
-    signature[95:100]→ hash20→ bucket20
+    signature[95:100] → hash20 → bucket20
     ```
 
     #v(1em)
-    **S-curve**: $P(s) = 1 - (1-s^r)^b$
+    *S-curve*: $P(s) = 1 - (1-s^r)^b$
 
-    s=0.8 → *95% detect*
-    s=0.5 → *45% detect*
-    s=0.2 → *< 1% false positive*
+    $s=0.8 =>$ $95%$ detect
+
+    $s=0.5 =>$ $45%$ detect
+
+    $s=0.2 =>$ $< 1%$ false positive
   ],
 )
 
@@ -782,21 +783,27 @@
 
 === Pipeline Hoàn chỉnh & Tuning
 
-#columns(2, gutter: 20pt)[
-  ```
-  Text (1MB)
-            ↓ k=5
-  Shingles (~500)
-            ↓ n=100
-  MinHash signature
-            ↓ b=20,r=5
-  20 Bands → Buckets
-            ↓
-  Candidates (0.1%)
-            ↓
-  Verify Jaccard → Top-K
-  ```
-]
+#figure(
+  image("/images/lsh-flow.png", width:15%)
+)
+
+#pagebreak()
+
+// #columns(2, gutter: 20pt)[
+//   ```
+//   Text (1MB)
+//             ↓ k=5
+//   Shingles (~500)
+//             ↓ n=100
+//   MinHash signature
+//             ↓ b=20,r=5
+//   20 Bands → Buckets
+//             ↓
+//   Candidates (0.1%)
+//             ↓
+//   Verify Jaccard → Top-K
+//   ```
+// ]
 === Tối ưu Bands
 
 #figure(
@@ -804,30 +811,29 @@
     columns: 4,
     align: horizon,
     table.header[
-      *Target s*
+      *Target $s$*
     ][
-      *b (bands)*
+      *$b$ (bands)*
     ][
-      *r (rows)*
+      *$r$ (rows)*
     ][
-      *P(detect)*
+      *$P$ (detect)*
     ],
-    [≥ 0.8 (duplicate)], [10], [10], [95%],
-    [≥ 0.5 (similar)], [20], [5], [62%],
-    [≥ 0.3 (related)], [50], [2], [78%],
+    [$>= 0.8$ (duplicate)], [10], [10], [95%],
+    [$>= 0.5$ (similar)], [20], [5], [62%],
+    [$>= 0.3$ (related)], [50], [2], [78%],
   ),
-  caption: [n = b × r = 100 hash functions],
+  caption: [$n = b times r = 100$ hash functions],
 )
 
-*S-curve formula*:
-```P(s) = 1 - (1 - s^r)^b```
+*S-curve formula*: $P(s) = 1 - (1 - s^r)^b$
 
 #set text(size: 14pt)
-**Trade-offs**:
-- **Nhiều bands (b lớn, r nhỏ)**: ↑ Recall, ↓ Precision
-- **Ít bands (b nhỏ, r lớn)**: ↓ Recall, ↑ Precision
+*Trade-offs*:
+- Nhiều bands ($b$ lớn, $r$ nhỏ): ↑ Recall, ↓ Precision
+- Ít bands ($b$ nhỏ, $r$ lớn): ↓ Recall, ↑ Precision
 
-*1M docs → 10k candidates (thay vì 10^12 pairs)*
+*$10^6$ docs → $10^4$ candidates (thay vì $10^12$ pairs)*
 
 
 

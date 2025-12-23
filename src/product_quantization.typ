@@ -88,3 +88,9 @@
     Độ phức tạp: $ O(k D + N m) approx O(N m) $
   ],
 )
+
+#pagebreak()
+
+#figure(
+  image("/images/lopq.png")
+)
