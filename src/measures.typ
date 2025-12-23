@@ -28,7 +28,7 @@
 ]
 
 #pagebreak()
-Với p = 1, ta có khoảng cách Manhattan:
+Với $p = 1$, ta có khoảng cách Manhattan:
 
 #grid(
   columns: 2,
@@ -46,7 +46,7 @@ Với p = 1, ta có khoảng cách Manhattan:
 )
 
 #pagebreak()
-Với p = 2, ta có khoảng cách Euclidean:
+Với $p = 2$, ta có khoảng cách Euclidean:
 
 #grid(
   columns: 2,
@@ -80,7 +80,7 @@ Trong đó $J(A, B)$ là Jaccard Similarity giữa hai tập $A$ và $B$.
   ],
   [
     $
-      cos(theta) = (A dot B) / (||A|| * ||B||)
+      cos(theta) = (A dot B) / (||A||||B||)
     $
   ],
 )

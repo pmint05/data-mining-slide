@@ -87,7 +87,7 @@
   ),
 )
 
-*Chèn*
+*Chèn một điểm vào cây*
 
 #box(
   height: 355pt,
@@ -145,82 +145,137 @@
     )[
       + *function* findMin(root, d)
         + *if* root is empty *then*
-        + *return* None
+          + *return* None
         + *if* root.cut_dim == d *then*
-        + *if* root.left is empty *then*
-          + *return* root
-        + *return* findMin(root.left, d)
+          + *if* root.left is empty *then*
+            + *return* root
+          + *return* findMin(root.left, d)
         + *else*
-        + left_min $<-$ findMin(root.left, d)
-        + right_min $<-$ findMin(root.right, d)
-        + res $<-$ root
-        + *for* candidate *in* [left_min, right_min] *do*
-          + *if* candidate != None *and* candidate.point[d] < res.point[d] *then*
-          + res $<-$ candidate
-        + *return* res
+          + left_min $<-$ findMin(root.left, d)
+          + right_min $<-$ findMin(root.right, d)
+          + res $<-$ root
+          + *for* candidate *in* [left_min, right_min] *do*
+            + *if* candidate != None *and* candidate.point[d] < res.point[d] *then*
+            + res $<-$ candidate
+          + *return* res
     ],
   )
 ]
-*Xóa*
+*Xóa một điểm khỏi cây*
 
 #[
-  #set text(size: 9.9pt)
-  #figure(
-    kind: "algorithm",
-    supplement: [Thuật toán],
 
-    pseudocode-list(
-      hooks: .5em,
-      booktabs: true,
-      numbered-title: [Xóa điểm trong cây K-d Tree #h(100%)],
-    )[
-      + *function* delete(root, point, depth)
-        + *if* root is empty *then*
-        + *return* None
-        + *if* root.point == point *then*
-        + *if* root.right is not empty *then*
-          + minNode $<-$ findMin(root.right, root.cut_dim)
-          + root.point $<-$ minNode.point
-          + root.right $<-$ delete(root.right, minNode.point, depth + 1)
-        + *else if* root.left is not empty *then*
-          + minNode $<-$ findMin(root.left, root.cut_dim)
-          + root.point $<-$ minNode.point
-          + root.right $<-$ delete(root.left, minNode.point, depth + 1)
-          + root.left $<-$ None
-        + *else*
-          + *return* None
-        + *return* root
-        + axis $<-$ depth mod $k$
-        + *if* point[axis] < root.point[axis] *then*
-        + root.left $<-$ delete(root.left, point, depth + 1)
-        + *else*
-        + root.right $<-$ delete(root.right, point, depth + 1)
-        + *return* root
+  #grid(
+    columns: 2,
+    [
+      #set text(size: 12.5pt)
+      #figure(
+        kind: "algorithm",
+        supplement: [Thuật toán],
+
+        pseudocode-list(
+          hooks: .5em,
+          booktabs: true,
+          numbered-title: [Xóa điểm trong cây K-d Tree - Trường hợp 1],
+        )[
+          + *function* delete(root, point, depth)
+            + *if* root is empty *then*
+              + *return* None
+            + *if* root.point == point *then*
+              + *if* root.right is not empty *then*
+                + minNode $<-$ findMin(root.right, root.cut_dim)
+                + root.point $<-$ minNode.point
+                + root.right $<-$ delete(root.right, minNode.point, depth + 1)
+          //   + *else if* root.left is not empty *then*
+          //     + minNode $<-$ findMin(root.left, root.cut_dim)
+          //     + root.point $<-$ minNode.point
+          //     + root.right $<-$ delete(root.left, minNode.point, depth + 1)
+          //     + root.left $<-$ None
+          //   + *else*
+          //     + *return* None
+          // + *return* root
+          // + axis $<-$ depth mod $k$
+          // + *if* point[axis] < root.point[axis] *then*
+          // + root.left $<-$ delete(root.left, point, depth + 1)
+          // + *else*
+          // + root.right $<-$ delete(root.right, point, depth + 1)
+          // + *return* root
+        ],
+      )
     ],
+    [
+      #figure(
+        image("../images/dm09.png", width: 70%),
+        caption: "Tồn tại con bên phải",
+      )
+    ]
   )
+
 ]
 
-#grid(
-  columns: 3,
-  [
-    #figure(
-      image("../images/dm09.png", width: 70%),
-      caption: "Tồn tại con bên phải",
-    )
-  ],
-  [
-    #figure(
-      image("../images/dm10.png", width: 70%),
-      caption: "Không tồn tại \ncon bên phải",
-    )
-  ],
-  [
-    #figure(
-      image("../images/dm11.png", width: 70%),
-      caption: "Không tồn tại \ncon bên phải",
-    )
-  ],
-)
+#[
+
+  #grid(
+    columns: 2,
+    [
+      #set text(size: 12pt)
+      #figure(
+        kind: "algorithm",
+        supplement: [Thuật toán],
+
+        pseudocode-list(
+          hooks: .5em,
+          booktabs: true,
+          numbered-title: [Xóa điểm trong cây K-d Tree - Trường hợp 2],
+        )[
+            + *else if* root.left is not empty *then*
+              + minNode $<-$ findMin(root.left, root.cut_dim)
+              + root.point $<-$ minNode.point
+              + root.right $<-$ delete(root.left, minNode.point, depth + 1)
+              + root.left $<-$ None
+            + *else*
+              + *return* None
+          + *return* root
+          + axis $<-$ depth mod $k$
+          + *if* point[axis] < root.point[axis] *then*
+          + root.left $<-$ delete(root.left, point, depth + 1)
+          + *else*
+          + root.right $<-$ delete(root.right, point, depth + 1)
+          + *return* root
+        ],
+      )
+    ],
+    [
+      #figure(
+        image("../images/dm10.png", width: 50%),
+        caption: "Không tồn tại con bên phải",
+      )
+    ]
+  )
+
+]
+
+// #grid(
+//   columns: 3,
+//   [
+//     #figure(
+//       image("../images/dm09.png", width: 70%),
+//       caption: "Tồn tại con bên phải",
+//     )
+//   ],
+//   [
+//     #figure(
+//       image("../images/dm10.png", width: 70%),
+//       caption: "Không tồn tại \ncon bên phải",
+//     )
+//   ],
+//   [
+//     #figure(
+//       image("../images/dm11.png", width: 70%),
+//       caption: "Không tồn tại \ncon bên phải",
+//     )
+//   ],
+// )
 
 #pagebreak()
 
@@ -247,7 +302,7 @@
 ]
 
 #[
-  #set text(size: 9.5pt)
+  #set text(size: 14pt)
   #figure(
     kind: "algorithm",
     supplement: [Thuật toán],
@@ -255,37 +310,103 @@
     pseudocode-list(
       hooks: .5em,
       booktabs: true,
-      numbered-title: [Tìm $k$ điểm gần nhất #h(100%)],
+      numbered-title: [Tìm $k$ điểm gần nhất - Cắt tỉa theo nhánh trái],
     )[
       + *function* kNearestNeighbor(root, depth, point, k)
         + *if* root is empty *then*
-        + *return*
+          + *return*
         + cut_dim $<-$ depth mod $d$
         + *if* point[cut_dim] < root.cut_val[cut_dim] *then*
-        + *if* root.left is not empty *then*
-          + kNearestNeighbor(root.left, depth + 1, point, k)
-        + estimated_dist $<-$ $"(point[cut_dim] - root.cut_val[cut_dim])"^2$
-        + *if* estimated_dist $<=$ pq.maxDist() *or* len(pq) < k *then*
-          + *if* root.right is not empty *then*
-          + kNearestNeighbor(root.right, depth + 1, point, k)
-          + pq.add(root.cut_val)
-        + *else if* point[cut_dim] > root.cut_val[cut_dim] *then*
-        + *if* root.right is not empty *then*
-          + kNearestNeighbor(root.right, depth + 1, point, k)
-        + estimated_dist $<-$ $"(point[cut_dim] - root.cut_val[cut_dim])"^2$
-        + *if* estimated_dist $<=$ pq.maxDist() *or* len(pq) < k *then*
           + *if* root.left is not empty *then*
-          + kNearestNeighbor(root.left, depth + 1, point, k)
-          + pq.add(root.cut_val)
-        + *else*
-        + *if* root.left is not empty *then*
-          + kNearestNeighbor(root.left, depth + 1, point, k)
-        + *if* root.right is not empty *then*
-          + kNearestNeighbor(root.right, depth + 1, point, k)
-        + pq.add(root.cut_val)
+            + kNearestNeighbor(root.left, depth + 1, point, k)
+          + estimated_dist $<-$ $"(point[cut_dim] - root.cut_val[cut_dim])"^2$
+          + *if* estimated_dist $<=$ pq.maxDist() *or* len(pq) < k *then*
+            + *if* root.right is not empty *then*
+              + kNearestNeighbor(root.right, depth + 1, point, k)
+            + pq.add(root.cut_val)
+        // + *else if* point[cut_dim] > root.cut_val[cut_dim] *then*
+        // + *if* root.right is not empty *then*
+        //   + kNearestNeighbor(root.right, depth + 1, point, k)
+        // + estimated_dist $<-$ $"(point[cut_dim] - root.cut_val[cut_dim])"^2$
+        // + *if* estimated_dist $<=$ pq.maxDist() *or* len(pq) < k *then*
+        //   + *if* root.left is not empty *then*
+        //   + kNearestNeighbor(root.left, depth + 1, point, k)
+        //   + pq.add(root.cut_val)
+        // + *else*
+        // + *if* root.left is not empty *then*
+        //   + kNearestNeighbor(root.left, depth + 1, point, k)
+        // + *if* root.right is not empty *then*
+        //   + kNearestNeighbor(root.right, depth + 1, point, k)
+        // + pq.add(root.cut_val)
     ],
   )
 ]
+
+#pagebreak()
+
+#[
+  #set text(size: 16pt)
+  #figure(
+    kind: "algorithm",
+    supplement: [Thuật toán],
+
+    pseudocode-list(
+      hooks: .5em,
+      booktabs: true,
+      numbered-title: [Tìm $k$ điểm gần nhất - Cắt tỉa theo nhánh phải],
+    )[
+        + *else if* point[cut_dim] > root.cut_val[cut_dim] *then*
+          + *if* root.right is not empty *then*
+            + kNearestNeighbor(root.right, depth + 1, point, k)
+          + estimated_dist $<-$ $"(point[cut_dim] - root.cut_val[cut_dim])"^2$
+          + *if* estimated_dist $<=$ pq.maxDist() *or* len(pq) < k *then*
+            + *if* root.left is not empty *then*
+              + kNearestNeighbor(root.left, depth + 1, point, k)
+            + pq.add(root.cut_val)
+        // + *else*
+        // + *if* root.left is not empty *then*
+        //   + kNearestNeighbor(root.left, depth + 1, point, k)
+        // + *if* root.right is not empty *then*
+        //   + kNearestNeighbor(root.right, depth + 1, point, k)
+        // + pq.add(root.cut_val)
+    ],
+  )
+]
+
+#pagebreak()
+
+#[
+  #set text(size: 16pt)
+  #figure(
+    kind: "algorithm",
+    supplement: [Thuật toán],
+
+    pseudocode-list(
+      hooks: .5em,
+      booktabs: true,
+      numbered-title: [Tìm $k$ điểm gần nhất - Không cắt tỉa],
+    )[
+        + *else*
+          + *if* root.left is not empty *then*
+            + kNearestNeighbor(root.left, depth + 1, point, k)
+          + *if* root.right is not empty *then*
+            + kNearestNeighbor(root.right, depth + 1, point, k)
+          + pq.add(root.cut_val)
+    ],
+  )
+]
+
+#pagebreak()
+
+- Ưu điểm:
+  - Dễ cài đặt
+  - Hỗ trợ nhiều tác vụ khác (truy vấn trong một không gian con...)
+  - Không cần học tham số
+- Nhược điểm:
+  - Không phù hợp với dữ liệu có số chiều lớn
+  - Khó cập nhật động (gây lệch cây)
+  - Không tối ưu cho dữ liệu phân bố không đều (nhiều outlier)
+  - Khó prune với các loại hàm khoảng cách != norm $L_1, L_2, L_inf$
 
 
 == Ball Tree
@@ -512,7 +633,7 @@
   ),
 )
 
-== LSH: Locality Sensitive Hashing 
+== LSH: Locality Sensitive Hashing
 
 #figure(
   image("../images/normalhash.png", width: 70%),
@@ -535,7 +656,7 @@
 #box(
   height: 300pt,
   grid(columns: (55%, 45%), gutter: 20pt)[
-    
+
     #set text(size: 13pt)
     #figure(
       kind: "algorithm",
@@ -544,10 +665,10 @@
         + *function* K_SHINGLING(doc, k=5):
           + shingles ← {}
             + *for* i = 0 *to* len(doc)-k:
-            + shingle ← doc[i:i+k]
-            + shingles.add(shingle)
-            + *return* shingles
-      ]
+              + shingle ← doc[i:i+k]
+              + shingles.add(shingle)
+              + *return* shingles
+      ],
     )
   ][
     #set text(size: 16pt)
@@ -556,10 +677,10 @@
     {"the", "he ", "cat", "at ", "sat"}
     ```
     #v(1em)
-    *Jaccard*: $J(A,B) = frac(|A∩B|,|A∪B|)$
-    
+    *Jaccard*: $J(A,B) = frac(|A∩B|, |A∪B|)$
+
     *Chuyển text → set để tính Jaccard*
-  ]
+  ],
 )
 
 #pagebreak()
@@ -581,7 +702,7 @@
               + h ← π[shingle]
               + signature[hash_i] ← min(signature[hash_i], h)
             + *return* signature
-      ]
+      ],
     )
   ][
     #set text(size: 15pt)
@@ -589,16 +710,16 @@
     ```
     Pr[minhash(A)=minhash(B)] = J(A,B)
     ```
-    
+
     #v(1em)
     **Ví dụ** (vocab=10k → n=100):
     ```
     Doc A: 500 shingles → [342, 187, 9052, ...]
     Doc B: 600 shingles → [342, 201, 9052, ...]
     ```
-    
+
     *Giảm 10kD → 100D (100x nhỏ hơn)*
-  ]
+  ],
 )
 
 #pagebreak()
@@ -623,38 +744,38 @@
       supplement: [Banding],
       pseudocode-list(hooks: .4em, booktabs: true, numbered-title: [Band + Hash #h(100%)])[
         + *function* BAND_HASH(signature, b=20, r=5):
-          +   buckets ← {}
-          +   *for* band = 0 *to* b-1:
-            +     start ← band [times] r
-            +     rows ← signature[start:start+r]
-            +     h ← hash(rows)
-            +     buckets[h].add(doc_id)
-        +   
-          +   candidates ← {}
-          +   *for* bucket *in* buckets.values():
-            +     *if* len(bucket) ≥ 2:
-              +       candidates += pairs(bucket)
-          +   *return* candidates
-      ]
+          + buckets ← {}
+          + *for* band = 0 *to* b-1:
+            + start ← band [times] r
+            + rows ← signature[start:start+r]
+            + h ← hash(rows)
+            + buckets[h].add(doc_id)
+        +
+          + candidates ← {}
+          + *for* bucket *in* buckets.values():
+            + *if* len(bucket) ≥ 2:
+              + candidates += pairs(bucket)
+          + *return* candidates
+      ],
     )
   ][
     #set text(size: 14pt)
-    
+
     **Ví dụ** (n=100, b=20 bands, r=5 rows/band):
     ```
     signature[0:5]   → hash1 → bucket1
-    signature[5:10]  → hash2 → bucket2  
+    signature[5:10]  → hash2 → bucket2
     ...
     signature[95:100]→ hash20→ bucket20
     ```
-    
+
     #v(1em)
     **S-curve**: $P(s) = 1 - (1-s^r)^b$
-    
+
     s=0.8 → *95% detect*
     s=0.5 → *45% detect*
     s=0.2 → *< 1% false positive*
-  ]
+  ],
 )
 
 #pagebreak()
@@ -662,21 +783,21 @@
 === Pipeline Hoàn chỉnh & Tuning
 
 #columns(2, gutter: 20pt)[
-```
-Text (1MB)
-          ↓ k=5
-Shingles (~500)
-          ↓ n=100
-MinHash signature
-          ↓ b=20,r=5
-20 Bands → Buckets
-          ↓
-Candidates (0.1%)
-          ↓
-Verify Jaccard → Top-K
-```
+  ```
+  Text (1MB)
+            ↓ k=5
+  Shingles (~500)
+            ↓ n=100
+  MinHash signature
+            ↓ b=20,r=5
+  20 Bands → Buckets
+            ↓
+  Candidates (0.1%)
+            ↓
+  Verify Jaccard → Top-K
+  ```
 ]
-=== Tối ưu Bands 
+=== Tối ưu Bands
 
 #figure(
   table(
@@ -691,18 +812,9 @@ Verify Jaccard → Top-K
     ][
       *P(detect)*
     ],
-    [≥ 0.8 (duplicate)],
-    [10],
-    [10],
-    [95%],
-    [≥ 0.5 (similar)],
-    [20],
-    [5],
-    [62%],
-    [≥ 0.3 (related)],
-    [50],
-    [2],
-    [78%],
+    [≥ 0.8 (duplicate)], [10], [10], [95%],
+    [≥ 0.5 (similar)], [20], [5], [62%],
+    [≥ 0.3 (related)], [50], [2], [78%],
   ),
   caption: [n = b × r = 100 hash functions],
 )

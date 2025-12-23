@@ -1,6 +1,6 @@
-= Product quantization
+== Product quantization
 
-== Quantization
+=== Quantization
 #grid(
   columns: (auto, auto),
   align(left)[
@@ -17,14 +17,14 @@
   ],
 )
 
-== Vector quantization
+=== Vector quantization
 
 #figure(
   image("../images/vector-quantization.jpg", width: 80%),
   caption: "Ví dụ về vector quantization",
 )
 
-== Product Quantization
+=== Product Quantization
 
 #figure(
   image("../images/prod-quant.svg", width: 85%),
