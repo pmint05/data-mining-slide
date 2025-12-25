@@ -208,7 +208,7 @@
         image("../images/dm09.png", width: 70%),
         caption: "Tồn tại con bên phải",
       )
-    ]
+    ],
   )
 
 ]
@@ -228,19 +228,19 @@
           booktabs: true,
           numbered-title: [Xóa điểm trong cây K-d Tree - Trường hợp 2],
         )[
-            + *else if* root.left is not empty *then*
-              + minNode $<-$ findMin(root.left, root.cut_dim)
-              + root.point $<-$ minNode.point
-              + root.right $<-$ delete(root.left, minNode.point, depth + 1)
-              + root.left $<-$ None
-            + *else*
-              + *return* None
-            + axis $<-$ depth mod $k$
-            + *if* point[axis] < root.point[axis] *then*
-              + root.left $<-$ delete(root.left, point, depth + 1)
-            + *else*
-              + root.right $<-$ delete(root.right, point, depth + 1)
-            + *return* root
+          + *else if* root.left is not empty *then*
+            + minNode $<-$ findMin(root.left, root.cut_dim)
+            + root.point $<-$ minNode.point
+            + root.right $<-$ delete(root.left, minNode.point, depth + 1)
+            + root.left $<-$ None
+          + *else*
+            + *return* None
+          + axis $<-$ depth mod $k$
+          + *if* point[axis] < root.point[axis] *then*
+            + root.left $<-$ delete(root.left, point, depth + 1)
+          + *else*
+            + root.right $<-$ delete(root.right, point, depth + 1)
+          + *return* root
         ],
       )
     ],
@@ -249,7 +249,7 @@
         image("../images/dm10.png", width: 50%),
         caption: "Không tồn tại con bên phải",
       )
-    ]
+    ],
   )
 
 ]
@@ -323,20 +323,20 @@
             + *if* root.right is not empty *then*
               + kNearestNeighbor(root.right, depth + 1, point, k)
             + pq.add(root.cut_val)
-        // + *else if* point[cut_dim] > root.cut_val[cut_dim] *then*
-        // + *if* root.right is not empty *then*
-        //   + kNearestNeighbor(root.right, depth + 1, point, k)
-        // + estimated_dist $<-$ $"(point[cut_dim] - root.cut_val[cut_dim])"^2$
-        // + *if* estimated_dist $<=$ pq.maxDist() *or* len(pq) < k *then*
-        //   + *if* root.left is not empty *then*
-        //   + kNearestNeighbor(root.left, depth + 1, point, k)
-        //   + pq.add(root.cut_val)
-        // + *else*
-        // + *if* root.left is not empty *then*
-        //   + kNearestNeighbor(root.left, depth + 1, point, k)
-        // + *if* root.right is not empty *then*
-        //   + kNearestNeighbor(root.right, depth + 1, point, k)
-        // + pq.add(root.cut_val)
+      // + *else if* point[cut_dim] > root.cut_val[cut_dim] *then*
+      // + *if* root.right is not empty *then*
+      //   + kNearestNeighbor(root.right, depth + 1, point, k)
+      // + estimated_dist $<-$ $"(point[cut_dim] - root.cut_val[cut_dim])"^2$
+      // + *if* estimated_dist $<=$ pq.maxDist() *or* len(pq) < k *then*
+      //   + *if* root.left is not empty *then*
+      //   + kNearestNeighbor(root.left, depth + 1, point, k)
+      //   + pq.add(root.cut_val)
+      // + *else*
+      // + *if* root.left is not empty *then*
+      //   + kNearestNeighbor(root.left, depth + 1, point, k)
+      // + *if* root.right is not empty *then*
+      //   + kNearestNeighbor(root.right, depth + 1, point, k)
+      // + pq.add(root.cut_val)
     ],
   )
 ]
@@ -354,20 +354,20 @@
       booktabs: true,
       numbered-title: [Tìm $k$ điểm gần nhất - Cắt tỉa theo nhánh phải],
     )[
-        + *else if* point[cut_dim] > root.cut_val[cut_dim] *then*
-          + *if* root.right is not empty *then*
-            + kNearestNeighbor(root.right, depth + 1, point, k)
-          + estimated_dist $<-$ $"(point[cut_dim] - root.cut_val[cut_dim])"^2$
-          + *if* estimated_dist $<=$ pq.maxDist() *or* len(pq) < k *then*
-            + *if* root.left is not empty *then*
-              + kNearestNeighbor(root.left, depth + 1, point, k)
-            + pq.add(root.cut_val)
-        // + *else*
-        // + *if* root.left is not empty *then*
-        //   + kNearestNeighbor(root.left, depth + 1, point, k)
-        // + *if* root.right is not empty *then*
-        //   + kNearestNeighbor(root.right, depth + 1, point, k)
-        // + pq.add(root.cut_val)
+      + *else if* point[cut_dim] > root.cut_val[cut_dim] *then*
+        + *if* root.right is not empty *then*
+          + kNearestNeighbor(root.right, depth + 1, point, k)
+        + estimated_dist $<-$ $"(point[cut_dim] - root.cut_val[cut_dim])"^2$
+        + *if* estimated_dist $<=$ pq.maxDist() *or* len(pq) < k *then*
+          + *if* root.left is not empty *then*
+            + kNearestNeighbor(root.left, depth + 1, point, k)
+          + pq.add(root.cut_val)
+      // + *else*
+      // + *if* root.left is not empty *then*
+      //   + kNearestNeighbor(root.left, depth + 1, point, k)
+      // + *if* root.right is not empty *then*
+      //   + kNearestNeighbor(root.right, depth + 1, point, k)
+      // + pq.add(root.cut_val)
     ],
   )
 ]
@@ -385,12 +385,12 @@
       booktabs: true,
       numbered-title: [Tìm $k$ điểm gần nhất - Không cắt tỉa],
     )[
-        + *else*
-          + *if* root.left is not empty *then*
-            + kNearestNeighbor(root.left, depth + 1, point, k)
-          + *if* root.right is not empty *then*
-            + kNearestNeighbor(root.right, depth + 1, point, k)
-          + pq.add(root.cut_val)
+      + *else*
+        + *if* root.left is not empty *then*
+          + kNearestNeighbor(root.left, depth + 1, point, k)
+        + *if* root.right is not empty *then*
+          + kNearestNeighbor(root.right, depth + 1, point, k)
+        + pq.add(root.cut_val)
     ],
   )
 ]
@@ -510,6 +510,7 @@
             numbered-title: [Chèn điểm vào Ball Tree #h(100%)],
           )[
             + *function* INSERT(node, $x$)
+              + node.radius $<-$ max(node.radius, dist($x$, node.center))
               + *if* node.is_leaf *then*
                 + node.points.append($x$)
                 + *if* $|"node.points"| >$ max_leaf_size *then*
@@ -519,12 +520,15 @@
                   + INSERT(node.left, $x$)
                 + *else*
                   + INSERT(node.right, $x$)
-                + update(node.center, node.radius)
           ],
         )
       ]
     ],
     [
+      #figure(
+        image("../images/split-node-ball-tree-cropped.svg", width: 100%),
+        caption: "Minh họa rebuild node",
+      )
       #set text(size: 16pt)
       Độ phức tạp:
       - Trung bình: $cal(O)(d log N)$
@@ -553,14 +557,14 @@
             numbered-title: [Xóa điểm khỏi Ball Tree #h(100%)],
           )[
             + *function* DELETE(node, $x$)
-              + *if* node.is_leaf *then*
-                + remove($x$, node.points)
+              + *if* node.is_leaf *and* $x$ $in$ node.points *then*
+                + node.points.remove($x$)
               + *else*
                 + *if* dist($x$, node.left.center) $<$ dist($x$, node.right.center) *then*
                   + DELETE(node.left, $x$)
                 + *else*
                   + DELETE(node.right, $x$)
-                + update(node.center, node.radius)
+              + node.radius $<-$ recompute_radius(node)
           ],
         )
       ]
@@ -582,7 +586,7 @@
     gutter: 20pt,
     [
       #[
-        #set text(size: 9pt)
+        #set text(size: 14pt)
         #figure(
           kind: "algorithm",
           supplement: [Thuật toán],
@@ -602,28 +606,57 @@
                       + heap.push((d, p))
                     + *else if* d < heap.max_key *then*
                       + heap.replace_max((d, p))
-                + *return*
+                  + *return*
                 + dL $<-$ max(0, dist(q, node.left.center) - node.left.radius)
                 + dR $<-$ max(0, dist(q, node.right.center) - node.right.radius)
-                + *if* dL < dR *then*
-                  + *if* heap.size < k *or* dL $<=$ heap.max_key *then*
-                    + SEARCH(node.left)
-                  + *if* heap.size < k *or* dR $<=$ heap.max_key *then*
-                    + SEARCH(node.right)
-                + *else*
-                  + *if* heap.size < k *or* dR $<=$ heap.max_key *then*
-                    + SEARCH(node.right)
-                  + *if* heap.size < k *or* dL $<=$ heap.max_key *then*
-                    + SEARCH(node.left)
-                + SEARCH(root)
-                + *return* heap.items sorted asc by distance
+          ],
+        )
+      ]
+    ],
+    [
+      #figure(
+        image("../images/d-ball-tree-cropped.svg", width: 80%),
+        caption: "Khoảng cách từ truy vấn đến các ball"
+      )
+    ],
+  ),
+)
+#box(
+  height: 355pt,
+  grid(
+    columns: (60%, auto),
+    gutter: 20pt,
+    [
+      #[
+        #set text(size: 14pt)
+        #figure(
+          kind: "algorithm",
+          supplement: [Thuật toán],
+
+          pseudocode-list(
+            hooks: .5em,
+            booktabs: true,
+            numbered-title: [Tìm $k$ điểm gần nhất - thăm node gần hơn trước #h(100%)],
+          )[
+            + *if* dL < dR *then*
+              + *if* heap.size < k *or* dL $<=$ heap.max_key *then*
+                + SEARCH(node.left)
+              + *if* heap.size < k *or* dR $<=$ heap.max_key *then*
+                + SEARCH(node.right)
+            + *else*
+              + *if* heap.size < k *or* dR $<=$ heap.max_key *then*
+                + SEARCH(node.right)
+              + *if* heap.size < k *or* dL $<=$ heap.max_key *then*
+                + SEARCH(node.left)
+            + SEARCH(root)
+            + *return* heap.items sorted asc by distance
           ],
         )
       ]
     ],
     [
       #set text(size: 16pt)
-      Độ phức tạp:
+      *Độ phức tạp*
       - Trung bình: $cal(O)(d log N)$
         - $d$ để tính khoảng cách từ truy vấn đến các node con trong cây
         - $log N$ số tầng trung bình của cây
@@ -632,16 +665,19 @@
   ),
 )
 
-- Ưu điểm:
-  - Hiệu quả hơn K-d Tree với dữ liệu nhiều chiều
-  - Không cần học tham số
-  - Hàm đo khoảng cách bất kỳ $->$ phù hợp nhiều loại dữ liệu
 
-- Nhược điểm
-  - Cấu trúc cây phức tạp
-  - Nhạy với outliers
-  - Chi phí xây dựng cây cao
-  - Hiệu suất giảm khi số chiều tăng
+
+#pagebreak()
+
+*Ưu điểm*
+- Hiệu quả hơn K-d Tree với dữ liệu nhiều chiều
+- Hàm đo khoảng cách bất kỳ $->$ phù hợp nhiều loại dữ liệu
+
+*Nhược điểm*
+- Cấu trúc cây phức tạp
+- Nhạy với outliers
+- Chi phí xây dựng cây cao
+- Hiệu suất giảm khi số chiều tăng
 
 == LSH: Locality Sensitive Hashing
 
@@ -795,7 +831,7 @@
 === Pipeline Hoàn chỉnh & Tuning
 
 #figure(
-  image("/images/lsh-flow.png", width:15%)
+  image("/images/lsh-flow.png", width: 15%),
 )
 
 #pagebreak()

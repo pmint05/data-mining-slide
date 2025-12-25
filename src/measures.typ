@@ -17,6 +17,23 @@
   ],
 )
 
+== Cosine Similarity
+#grid(
+  columns: 2,
+  [
+    #figure(
+      [#image("../images/cosine-similarity.svg", width: 60%) #v(10pt)],
+      caption: [Cosine Similarity],
+    )
+  ],
+  [
+    $
+      cos(theta) = (A dot B) / (||A||||B||)
+    $
+  ],
+)
+
+
 == Phép đo khoảng cách
 
 #align(top)[
@@ -69,22 +86,8 @@ $
   d_J (A, B) = 1 - J(A, B)
 $
 Trong đó $J(A, B)$ là Jaccard Similarity giữa hai tập $A$ và $B$.
-=== Cosine Similarity
-#grid(
-  columns: 2,
-  [
-    #figure(
-      [#image("../images/cosine-similarity.svg", width: 60%) #v(10pt)],
-      caption: [Cosine Similarity],
-    )
-  ],
-  [
-    $
-      cos(theta) = (A dot B) / (||A||||B||)
-    $
-  ],
-)
 
+#pagebreak()
 
 === Edit Distance
 
