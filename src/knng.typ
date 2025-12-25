@@ -36,47 +36,13 @@
 - Hàng xóm của hàng xóm khả năng cao cũng là hàng xóm
 - Bắt đầu với đồ thị ngẫu nhiên, cải thiện dần
 
+#figure(
+  image("../images/nndescent-idea.png", width: 50%),
+  caption: "Ý tưởng của NNDescent",
+)
+
+
 #pagebreak()
-
-#figure(
-  image("../images/nndescent1.png", width: 50%),
-  caption: "Tập đỉnh cần tạo đồ thị",
-)
-
-#figure(
-  image("../images/nndescent2.png", width: 50%),
-  caption: "Đồ thị ban đầu được khởi tạo ngẫu nhiên",
-)
-
-#figure(
-  image("../images/nndescent3.png", width: 50%),
-  caption: "Cải thiện hàng xóm đỉnh 1",
-)
-
-#figure(
-  image("../images/nndescent4.png", width: 50%),
-  caption: "Cải thiện hàng xóm đỉnh 2",
-)
-
-#figure(
-  image("../images/nndescent5.png", width: 50%),
-  caption: "Cải thiện hàng xóm đỉnh 3",
-)
-
-#figure(
-  image("../images/nndescent6.png", width: 50%),
-  caption: "Cải thiện hàng xóm đỉnh 4",
-)
-
-#figure(
-  image("../images/nndescent7.png", width: 50%),
-  caption: "Cải thiện hàng xóm đỉnh 5",
-)
-
-#figure(
-  image("../images/nndescent8.png", width: 50%),
-  caption: "Không còn cải thiện thêm được nữa",
-)
 
 #box(
   height: 355pt,
@@ -124,38 +90,55 @@
   ),
 )
 
+#pagebreak()
+
+#figure(
+  image("../images/nndescent1.png", width: 50%),
+  caption: "Tập đỉnh cần tạo đồ thị",
+)
+
+#figure(
+  image("../images/nndescent2.png", width: 50%),
+  caption: "Đồ thị ban đầu được khởi tạo ngẫu nhiên",
+)
+
+#figure(
+  image("../images/nndescent3.png", width: 50%),
+  caption: "Cải thiện hàng xóm đỉnh 1",
+)
+
+#figure(
+  image("../images/nndescent4.png", width: 50%),
+  caption: "Cải thiện hàng xóm đỉnh 2",
+)
+
+#figure(
+  image("../images/nndescent5.png", width: 50%),
+  caption: "Cải thiện hàng xóm đỉnh 3",
+)
+
+#figure(
+  image("../images/nndescent6.png", width: 50%),
+  caption: "Cải thiện hàng xóm đỉnh 4",
+)
+
+#figure(
+  image("../images/nndescent7.png", width: 50%),
+  caption: "Cải thiện hàng xóm đỉnh 5",
+)
+
+#figure(
+  image("../images/nndescent8.png", width: 50%),
+  caption: "Không còn cải thiện thêm được nữa",
+)
+
+
 #align(top)[
   === Truy vấn
 ]
 
 - Heuristic/meta-heuristic
 - Di chuyển theo hướng có các đỉnh gần đỉnh truy vấn $q$ nhất
-
-#figure(
-  image("../images/knns1.png", width: 50%),
-  caption: "Chọn ngẫu nhiên đỉnh số 4 để bắt đầu",
-)
-
-#figure(
-  image("../images/knns2.png", width: 50%),
-  caption: "Thăm đỉnh 4, xét hàng xóm là 2 và 3",
-)
-
-#figure(
-  image("../images/knns3.png", width: 50%),
-  caption: "Thăm đỉnh 2, xét hàng xóm là 1 và 3",
-)
-
-#figure(
-  image("../images/knns3.png", width: 50%),
-  caption: "Thăm đỉnh 2, xét hàng xóm là 1 và 3",
-)
-
-#figure(
-  image("../images/knns4.png", width: 50%),
-  caption: "Thăm đỉnh 1, xét hàng xóm là 3 và 5",
-)
-
 
 #box(
   height: 355pt,
@@ -197,6 +180,32 @@
     ],
   ),
 )
+
+#figure(
+  image("../images/knns1.png", width: 50%),
+  caption: "Chọn ngẫu nhiên đỉnh số 4 để bắt đầu",
+)
+
+#figure(
+  image("../images/knns2.png", width: 50%),
+  caption: "Thăm đỉnh 4, xét hàng xóm là 2 và 3",
+)
+
+#figure(
+  image("../images/knns3.png", width: 50%),
+  caption: "Thăm đỉnh 2, xét hàng xóm là 1 và 3",
+)
+
+#figure(
+  image("../images/knns3.png", width: 50%),
+  caption: "Thăm đỉnh 2, xét hàng xóm là 1 và 3",
+)
+
+#figure(
+  image("../images/knns4.png", width: 50%),
+  caption: "Thăm đỉnh 1, xét hàng xóm là 3 và 5",
+)
+
 
 #align(top)[
   === Cập nhật

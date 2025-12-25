@@ -1,4 +1,4 @@
-== Hierarchical Navigable Small World
+== Hierarchical Navigable Small World Graph
 #align(top)[
   === Định nghĩa
 ]
@@ -44,6 +44,12 @@
 
 - Xây dựng tăng dần (incremental)
 - Phân bố đỉnh theo xác suất giảm theo cấp số mũ
+
+#figure(
+  image("../images/hnswg-insert.png", width: 60%),
+  caption: "Chọn tầng cho đỉnh mới"
+)
+
 #figure(
   image("../images/hnswg_distribution.png", width: 80%),
   caption: "Phân phối tập đỉnh của HNSWG"

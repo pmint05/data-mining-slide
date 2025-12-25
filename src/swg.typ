@@ -1,4 +1,4 @@
-== Small World Graph
+== Navigable Small World Graph
 - Hiện tượng "thế giới nhỏ":  Các cá nhân trong những mạng xã hội rất lớn vẫn được kết nối với nhau thông qua những chuỗi quen biết ngắn.
 #figure(
   image("/images/swg_1.png", width:50%),
